@@ -1,0 +1,71 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-size: 62.5%;
+}
+body {
+  max-width: 76rem;
+  height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+  position: relative;
+  margin: auto;
+}
+.element {
+  cursor: pointer;
+  width: 15%;
+  aspect-ratio: 1/1;
+  position: absolute;
+  top: 0%;
+  animation-name: flow;
+  animation: flow linear delay 1;
+  border-radius: 25%;
+  transform: rotate(45deg) translate(-100%, -100%);
+}
+.element:hover {
+  background-color: red;
+}
+.slow {
+  animation-duration: 6s;
+  background-color: aquamarine;
+}
+.medium {
+  animation-duration: 4s;
+  background-color: rgb(199, 246, 13);
+}
+.fast {
+  animation-duration: 2s;
+  background-color: rgb(255, 156, 85);
+}
+.a {
+  left: 5%;
+}
+.b {
+  left: 30%;
+}
+.c {
+  left: 55%;
+}
+.d {
+  left: 80%;
+}
+@keyframes flow {
+  from {
+    top: 0%;
+    transform: rotate(45deg) translate(-100%, -100%);
+  }
+  to {
+    top: 100%;
+    transform: rotate(45deg) translate(100%, 100%);
+  }
+}
+#timer {
+  font-size: 2rem;
+  position: absolute;
+  right: 10%;
+  top: 10%;
+  background-color: coral;
+}

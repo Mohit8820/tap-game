@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body id="body">
+    <div id="timer">1</div>
+    <!-- <div class="element" onclick="clicked()">el</div> -->
+  </body>
+  <script>
+    //matrix method 0 1 0 0(horizontally divided in 4 planes) or randomized
+    function randno(n) {
+      return Math.floor(Math.random() * n);
+    }
+    //add destructive tile
+    var speeds = ["fast", "medium", "slow"];
+    var positions = ["a", "b", "c", "d"];
+    var points = 0;
+    var elNo = 0;
+    var body = document.getElementById("body");
+    // var new_el = document.createElement("div");
+    // new_el.classList.add("element");
+    // new_el.classList.add("slow");
+    // document.getElementById("body").appendChild(new_el);
+    //  body.innerHTML = `<div class="element 1 slow" onclick="clicked();"></div>`;
+    function clicked() {
+      console.log("clicked");
+      var els = document.getElementsByClassName("element");
+      for (var i = 0; i < els.length; i++) {
+        els[i].addEventListener("click", function () {
+          if (this.classlist.contains("slow")) points = points + 100;
+          console.log(points);
+          this.style.display = "none";
+        });
+      }
+    }
+    //var a = document.getElementsByClassName("1")[0];
+    function createEl() {
+      var spd = speeds[randno(3)];
+      var pos = positions[randno(4)];
+
+      // body.innerHTML =
+      //   body.innerHTML +
+      //   `<div class="element ${spd} ${elNo}" onclick="clicked(${elNo});"></div>`;
+      var new_el = document.createElement("div");
+      new_el.classList.add("element");
+      new_el.classList.add(spd);
+      //add random speed according to which points are given
+      //new_el.classList.add(pos);
+      new_el.classList.add(`${elNo}`);
+      new_el.classList.add(pos);
+      //add random position
+
+      document.getElementById("body").appendChild(new_el);
+      document
+        .getElementsByClassName(`${elNo}`)[0]
+        .addEventListener("click", function () {
+          if (this.classList.contains("slow")) points = points + 100;
+          else if (this.classList.contains("medium")) points = points + 200;
+          else points = points + 300;
+          console.log(points);
+          this.style.display = "none";
+        });
+      elNo++;
+    }
+
+    const myInterval = setInterval(myTimer, 1000);
+    var time = 0;
+    function myTimer() {
+      document.getElementById("timer").innerHTML = time;
+      createEl();
+      if (time === 100) myStop();
+      time++;
+    }
+    function myStop() {
+      clearInterval(myInterval);
+    }
+
+    // body.innerHTML =
+    //  body.innerHTML + `<div class="element fast" onclick="clicked();"></div>`;
+    //a function which randomly calls other element creating functions
+  </script>
+</html>
