@@ -2,6 +2,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: "Poppins", sans-serif;
 }
 html {
   font-size: 62.5%;
@@ -13,7 +14,44 @@ body {
   overflow: hidden;
   position: relative;
   margin: auto;
+  background: lavender;
 }
+button {
+  border: none;
+  background-color: transparent;
+}
+nav {
+  padding: 0 1rem;
+  height: 5rem;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  background: #ffffff71;
+  z-index: 9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.timer-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+#timer,
+#points {
+  font-size: 2rem;
+}
+
+#countdown {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%);
+  font-size: 8rem;
+  opacity: 0.1;
+}
+
 .element {
   cursor: pointer;
   width: 15%;
@@ -24,6 +62,7 @@ body {
   animation: flow linear delay 1;
   border-radius: 25%;
   transform: rotate(45deg) translate(-100%, -100%);
+  border: 0.01rem solid rgb(156, 149, 149);
 }
 .element:hover {
   background-color: red;
@@ -33,11 +72,11 @@ body {
   background-color: aquamarine;
 }
 .medium {
-  animation-duration: 4s;
+  animation-duration: 4.3s;
   background-color: rgb(199, 246, 13);
 }
 .fast {
-  animation-duration: 2s;
+  animation-duration: 2.8s;
   background-color: rgb(255, 156, 85);
 }
 .a {
@@ -61,11 +100,4 @@ body {
     top: 100%;
     transform: rotate(45deg) translate(100%, 100%);
   }
-}
-#timer {
-  font-size: 2rem;
-  position: absolute;
-  right: 10%;
-  top: 10%;
-  background-color: coral;
 }

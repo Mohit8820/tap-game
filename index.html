@@ -4,12 +4,51 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
+
     <title>Document</title>
   </head>
   <body id="body">
-    <div id="timer">1</div>
-    <!-- <div class="element" onclick="clicked()">el</div> -->
+    <nav>
+      <div id="points">000</div>
+      <div class="timer-container">
+        <button class="reset" onclick="restart();">
+          <svg
+            clip-rule="evenodd"
+            fill-rule="evenodd"
+            stroke-linejoin="round"
+            stroke-miterlimit="2"
+            width="2.4rem"
+            height="2.4rem"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="m3.508 6.726c1.765-2.836 4.911-4.726 8.495-4.726 5.518 0 9.997 4.48 9.997 9.997 0 5.519-4.479 9.999-9.997 9.999-5.245 0-9.553-4.048-9.966-9.188-.024-.302.189-.811.749-.811.391 0 .715.3.747.69.351 4.369 4.012 7.809 8.47 7.809 4.69 0 8.497-3.808 8.497-8.499 0-4.689-3.807-8.497-8.497-8.497-3.037 0-5.704 1.597-7.206 3.995l1.991.005c.414 0 .75.336.75.75s-.336.75-.75.75h-4.033c-.414 0-.75-.336-.75-.75v-4.049c0-.414.336-.75.75-.75s.75.335.75.75z"
+              fill-rule="nonzero"
+            />
+          </svg>
+        </button>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="2.4rem"
+          height="2.4rem"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M18.513 7.119c.958-1.143 1.487-2.577 1.487-4.036v-3.083h-16v3.083c0 1.459.528 2.892 1.487 4.035l3.086 3.68c.567.677.571 1.625.009 2.306l-3.13 3.794c-.936 1.136-1.452 2.555-1.452 3.995v3.107h16v-3.107c0-1.44-.517-2.858-1.453-3.994l-3.13-3.794c-.562-.681-.558-1.629.009-2.306l3.087-3.68zm-4.639 7.257l3.13 3.794c.652.792.996 1.726.996 2.83h-12c0-1.104.343-2.039.996-2.829l3.129-3.793c1.167-1.414 1.159-3.459-.019-4.864l-3.086-3.681c-.66-.785-1.02-1.736-1.02-2.834h12c0 1.101-.363 2.05-1.02 2.834l-3.087 3.68c-1.177 1.405-1.185 3.451-.019 4.863z"
+          />
+        </svg>
+        <div id="timer"></div>
+      </div>
+    </nav>
+    <div id="countdown"></div>
   </body>
   <script>
     //matrix method 0 1 0 0(horizontally divided in 4 planes) or randomized
@@ -22,23 +61,6 @@
     var points = 0;
     var elNo = 0;
     var body = document.getElementById("body");
-    // var new_el = document.createElement("div");
-    // new_el.classList.add("element");
-    // new_el.classList.add("slow");
-    // document.getElementById("body").appendChild(new_el);
-    //  body.innerHTML = `<div class="element 1 slow" onclick="clicked();"></div>`;
-    function clicked() {
-      console.log("clicked");
-      var els = document.getElementsByClassName("element");
-      for (var i = 0; i < els.length; i++) {
-        els[i].addEventListener("click", function () {
-          if (this.classlist.contains("slow")) points = points + 100;
-          console.log(points);
-          this.style.display = "none";
-        });
-      }
-    }
-    //var a = document.getElementsByClassName("1")[0];
     function createEl() {
       var spd = speeds[randno(3)];
       var pos = positions[randno(4)];
@@ -46,7 +68,7 @@
       // body.innerHTML =
       //   body.innerHTML +
       //   `<div class="element ${spd} ${elNo}" onclick="clicked(${elNo});"></div>`;
-      var new_el = document.createElement("div");
+      var new_el = document.createElement("button");
       new_el.classList.add("element");
       new_el.classList.add(spd);
       //add random speed according to which points are given
@@ -62,24 +84,48 @@
           if (this.classList.contains("slow")) points = points + 100;
           else if (this.classList.contains("medium")) points = points + 200;
           else points = points + 300;
-          console.log(points);
+          document.getElementById("points").innerHTML = points;
           this.style.display = "none";
         });
       elNo++;
     }
-
-    const myInterval = setInterval(myTimer, 1000);
-    var time = 0;
+    var myInterval;
+    function begin() {
+      myInterval = setInterval(myTimer, 1000);
+    }
+    var time = 30;
     function myTimer() {
       document.getElementById("timer").innerHTML = time;
+      if (time === 0) myStop();
       createEl();
-      if (time === 100) myStop();
-      time++;
+      time--;
     }
     function myStop() {
       clearInterval(myInterval);
     }
 
+    var c = 3;
+    var start;
+    function restart() {
+      c = 3;
+      points = 0;
+      document.getElementById("points").innerHTML = "000";
+      clearInterval(myInterval);
+      clearInterval(start);
+      start = setInterval(countdown, 1000);
+    }
+
+    function countdown() {
+      if (c === 0) stopCoundown();
+      document.getElementById("countdown").innerHTML = c;
+      c--;
+    }
+    function stopCoundown() {
+      document.getElementById("countdown").innerHTML = "";
+      clearInterval(start);
+      begin();
+    }
+    restart();
     // body.innerHTML =
     //  body.innerHTML + `<div class="element fast" onclick="clicked();"></div>`;
     //a function which randomly calls other element creating functions
