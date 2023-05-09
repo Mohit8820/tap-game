@@ -14,11 +14,12 @@ body {
   overflow: hidden;
   position: relative;
   margin: auto;
-  background: lavender;
+  background: #e6e6fa96;
 }
 button {
   border: none;
   background-color: transparent;
+  cursor: pointer;
 }
 nav {
   padding: 0 1rem;
@@ -31,16 +32,16 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-size: 2rem;
+}
+.reset {
+  margin-right: 1rem;
 }
 .timer-container {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-}
-#timer,
-#points {
-  font-size: 2rem;
 }
 
 #countdown {
@@ -59,25 +60,37 @@ nav {
   position: absolute;
   top: 0%;
   animation-name: flow;
-  animation: flow linear delay 1;
+  animation: flow linear;
   border-radius: 25%;
-  transform: rotate(45deg) translate(-100%, -100%);
-  border: 0.01rem solid rgb(156, 149, 149);
+  transform: translate(0%, -100%);
+  /* border: 0.01rem solid rgb(156, 149, 149); */
 }
 .element:hover {
-  background-color: red;
+  scale: 1.1;
 }
 .slow {
-  animation-duration: 6s;
+  animation-duration: 4.5s;
   background-color: aquamarine;
+  background: url("/images/one.png") no-repeat fixed center;
+  background-size: cover;
 }
 .medium {
-  animation-duration: 4.3s;
+  animation-duration: 3s;
   background-color: rgb(199, 246, 13);
+  background: url("/images/two.png") no-repeat fixed center;
+  background-size: cover;
 }
 .fast {
-  animation-duration: 2.8s;
+  animation-duration: 1.8s;
   background-color: rgb(255, 156, 85);
+  background: url("/images/three.png") no-repeat fixed center;
+  background-size: cover;
+}
+.decay {
+  animation-duration: 4.5s;
+  /* background-color: rgb(40, 48, 45); */
+  background: url("/images/tooth.png") no-repeat fixed center;
+  background-size: cover;
 }
 .a {
   left: 5%;
@@ -94,10 +107,39 @@ nav {
 @keyframes flow {
   from {
     top: 0%;
-    transform: rotate(45deg) translate(-100%, -100%);
+    transform: translate(0%, -100%);
   }
   to {
     top: 100%;
-    transform: rotate(45deg) translate(100%, 100%);
+    transform: translate(0%, 100%);
   }
+}
+#intro {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  width: 100%;
+  text-align: center;
+}
+#intro button {
+  border-radius: 1rem;
+  background-color: blueviolet;
+  font-size: 4rem;
+  color: aliceblue;
+  padding: 1rem 2rem;
+  margin-top: 4rem;
+  margin-bottom: 6rem;
+}
+li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+li img {
+  width: 7rem;
+  height: auto;
 }
