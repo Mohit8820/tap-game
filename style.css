@@ -10,7 +10,6 @@ html {
 body {
   max-width: 76rem;
   height: 100vh;
-  max-height: 100vh;
   overflow: hidden;
   position: relative;
   margin: auto;
@@ -43,6 +42,9 @@ nav {
   align-items: center;
   justify-content: space-between;
   font-size: 2rem;
+}
+#points {
+  font-weight: 600;
 }
 .reset {
   margin-right: 1rem;
@@ -141,6 +143,7 @@ nav {
   padding: 1rem 2rem;
   margin-top: 4rem;
   margin-bottom: 6rem;
+  font-weight: 700;
 }
 li {
   display: flex;
@@ -152,4 +155,10 @@ li {
 li img {
   width: 7rem;
   height: auto;
+}
+
+@media (max-width: 600px) {
+  html {
+    font-size: 50%;
+  }
 }
