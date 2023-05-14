@@ -6,6 +6,7 @@
 }
 html {
   font-size: 62.5%;
+  -webkit-tap-highlight-color: transparent;
 }
 body {
   max-width: 76rem;
@@ -68,6 +69,7 @@ nav {
 .element {
   cursor: pointer;
   width: 15%;
+  height: 10rem;
   aspect-ratio: 1/1;
   position: absolute;
   top: 0%;
@@ -84,25 +86,25 @@ nav {
   animation-duration: 4.5s;
   background-color: aquamarine;
   background: url("images/one.png") no-repeat fixed center;
-  background-size: cover;
+  background-size: contain;
 }
 .medium {
   animation-duration: 3s;
   background-color: rgb(199, 246, 13);
   background: url("images/two.png") no-repeat fixed center;
-  background-size: cover;
+  background-size: contain;
 }
 .fast {
   animation-duration: 1.8s;
   background-color: rgb(255, 156, 85);
   background: url("images/three.png") no-repeat fixed center;
-  background-size: cover;
+  background-size: contain;
 }
 .decay {
   animation-duration: 4.5s;
   /* background-color: rgb(40, 48, 45); */
   background: url("images/tooth.png") no-repeat fixed center;
-  background-size: cover;
+  background-size: contain;
 }
 .a {
   left: 5%;
@@ -137,7 +139,7 @@ nav {
 }
 #intro button {
   border-radius: 1rem;
-  background-color: blueviolet;
+  background-color: #8a2be2;
   font-size: 4rem;
   color: aliceblue;
   padding: 1rem 2rem;
